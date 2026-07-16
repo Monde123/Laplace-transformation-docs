@@ -1,0 +1,1150 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{kpfonts}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{eso-pic}
+\usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=2.5cm]{geometry}
+\usepackage{lipsum}  % Pour générer du texte fictif
+\usepackage{fancyhdr}
+\usepackage{draftwatermark}
+
+% Configuration de l'en-tête et du pied de page
+\pagestyle{fancy}
+\fancyhf{}  % Efface tous les en-têtes et pieds de page actuels
+\fancyhead[L]{\leftmark}  % En-tête centré
+\fancyhead[R]{\thepage}  % En-tête à droite
+\renewcommand{\headrulewidth}{0.4pt}  % Ligne d'en-tête
+\fancyfoot[L]{Faculté des Sciences Et Techniques}  % Pied de page centré
+\renewcommand{\footrulewidth}{0.4pt}  % Ligne de pied de page
+
+% Configuration du filigrane
+\SetWatermarkText{Transformation de Laplace et Applications}  % Texte du filigrane
+\SetWatermarkScale{0.28}  % Échelle du filigrane (plus grand pour un effet plus visible)
+\SetWatermarkColor[gray]{0.85}  % Couleur du filigrane (gris clair)
+% Couleur de fond
+
+ % Choisir une couleur de fond ici
+
+\begin{document}
+
+\begin{titlepage}
+
+% Page de garde
+\pagecolor{cyan!10}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Ligne horizontale
+
+% Image 1 en haut à gauche
+
+
+\vspace*{2cm}
+\begin{center}
+    % En-têtes
+    {\LARGE Université d'Abomey-Calavi}\\[0.5cm]
+    {\Large Faculté des Sciences et Techniques}\\[0.5cm]
+    {\large Département de Mathématiques}\\[1.5cm]
+    
+    % Informations sur le rapport
+    \underline{FILIERE}: Mathématiques Fondamentales\\
+    \underline{Niveau}: Licence Mathématique\\
+    \underline{Groupe:} 37\\[1cm]
+    
+    % Titre du rapport
+    \begin{tcolorbox}[colframe=orange, colback=orange!50, boxrule=2pt, arc=8pt, title={\textbf{Thème}}]
+        \begin{center}
+            \Large Transformation de Laplace et Applications
+        \end{center}
+    \end{tcolorbox}
+    
+    \vspace{2cm}
+    
+    % Membres du groupe et superviseur
+    \begin{minipage}{0.45\textwidth}
+        \begin{flushleft} \large
+           \underline{\emph{Membres du Groupe:}}\\
+           \vspace{1cm}
+           
+            Moïse \textsc{Koudanko}
+           
+        \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \begin{flushright} \large
+            \emph{Apprécié par:} \\
+            Ganiou \textsc{Atindehou}
+        \end{flushright}
+    \end{minipage}
+    
+    \vfill
+    
+    % Année académique
+    {\large Année Académique: 2023--2024}
+\end{center}
+
+\end{titlepage}
+
+\pagecolor{white!10}
+\tableofcontents
+
+\newpage
+
+\chapter{Introduction}
+
+   Inspiré des travaux du celèbre mathématicien \textbf{Joseph Foourier}, la tansformation de Laplace, comme la transformation de Fourier est l'une des importantes transformations intégrales de la Mathématiques Appliquée. 
+Portant le nom du surnommée \textit{Newton français}, \textsc{Pierre-Simon Laplace} (1745-1827) Elle intervient dans la résolution de nombreux problémes liés aux sciences exactes et théoriques.\\
+En effet Laplace, dans son ouvrage intitulé "Théorie analytique des probablites" paru en 1812, initie cette transformation pour résoudre des problèmes liés aux sciences de la probabilité. Plus tard , l'ingénieur britannique \textbf{Oliver Heaviside } (1850-1925), $gr\^ace$ à ses travaux sur le calcul symbolique élagit le champ d'application de la transformation de Laplace sur la résolution des équations différentielles et intégrales et dévient de ce fait l'un des pionniers importants de son extension. \textbf{Laurent Schwartz} (1915-2002) étendit également cette transformation en l'appliquant aux distributions.\\
+La transformation est un processus mathématique appliqué aux fonctions dans le but de les convertir en une autre fonction plus simples d'application.\\
+   Dans ce memoire, nous nous intèressons à la transformation de L'application, à ses différentes propriétés et quelques de ces applications.
+
+
+\chapter{ La transformation de laplace}
+
+ \section{Quelques concepts de base}
+
+\textbf{Intervalle finis:} Soient a et b deux réels avec $a \leqslant b$.
+  On qualifie de  fermés tous les intervalles bornés fermés des deux cotés ou bien les intervalles infinis d'un seul coté.\\
+
+\textbf{Fonction continue par morceaux:}  une fonction $f$ est continue par morceaux Si elle n admet que des points de discontinuités de
+ premiére espéce (admettant une limite à gauche et une limite à droite).\\
+ 
+\textbf{Fonction continue et d\'erivable:} En première approche, une fonction est continue si, à des variations infinitésimales de la variable x, correspondent des variations infinitésimales de la valeur f(x).
+Plus genéralement soient I un \textit{intervalle réel} , f:  $I \rightarrow \mathbb{R}$ , une fonction définie sur I à valeurs réelles et $\mathit{a\in I}$
+
+La fonction f est dite continue en a si 
+
+\[\forall \varepsilon >0  , \exists \eta  >0, \forall x \in I   {\lvert x-a  \rvert <\eta}  \Rightarrow {\lvert f(x)-f(a)\rvert}  <\varepsilon\]
+Une fonction est \textbf{d\'erivable} en un point a si elle admet un dérivée finie en a.\\
+ Elle donc dérivable sur un intervalle I si elle elle dérivable en chaque point de I.\\
+
+\textbf{Fonction causale:} une fonction est dite causale si elle est d\'efinie  sur l'ensemble des réels dont le support est minoré. on définit de la m\^eme  manière une distribution \textbf{causale}.\\
+
+ \textbf{Fonction holomorphe:} En \textbf{analyse complexe}, une fonction holomorphe est une fnction à valeurs complexes, définie et dérivable en tout point d'un sous ensemble ouvert du plan complexe.\\
+ 
+ \textbf{Th\'eoreme des r\'esidus:}
+ Soit f une fonction holomorphe sur $\mathbb{C}$ , sauf peut-être en des singularités isolées $z_k$ . Soit $\gamma$ le bord orienté d'un compact A contenu dans $\omega$ ,ne passant par aucun des $z_k$. Alors les $z_k$ contenus dans A sont finis et:\\
+\begin{displaymath}
+\int_{\gamma}f(z)\,\mathrm{dz} = 2 \pi i \sum_{z_k \in A}Res(f(z),z_k)
+\end{displaymath}
+\\
+
+\textbf{Calcul des résidus:}\\
+le résidu Res(f,$z_0$) d'une fonction en $z_0$ est le coefficient $a_-1$ de son développpement de Laurent au voisinage de $z_0$. Pour un p\^ole simple \\
+
+\begin{displaymath}
+ Res(f,z_0) =\lim_{z \rightarrow z_0} (z-z_0) f(z)
+ \end{displaymath}
+ \\
+ et cette formule se genéralise au cas où le pole est d'ordre m, comme on s'en convainc aisémanet \\
+ \begin{displaymath}
+   Res(f,z_0)
+   = \lim_{z \rightarrow z_0} \frac{1}{(m-1)!} \frac{d^{m-1}}{\mathit{dz^{m-1}}}((z-z_0)^{m}f(z))
+ \end{displaymath}\\
+ 
+\textbf{Fonction d'ordre exponentielle :} Si elle est bornée par une exponentielle , c'est à dire s'il existe des constantes réelles M $\geq$ 0 et $\mathit{r}$ telles que, pour $t\geq0$ :
+  $\lvert f(t)\rvert \leq M e^{rt}$\\
+  
+\textbf{Domaine temporel:} le domaine temporel se rapporte à l'étude de fonctions mathématiques ou de signaux physique modélisant une variation qulconque au cours du \textit{temps.}\\
+ 
+ \textbf{Domaine fréquentiel:} le domaine fréquentiel se rapporte à l'analyse des fonctions mathématiques ou des signaux  physique manifestant la fréquence.\\
+ 
+ \textbf{Lemme de RIemman-Lebesgue:} Pour $f$ $\in$ $\mathbf{L}^{1}(\mathbb{R})$, la transformée de Fourier 
+ $\tilde{f}$ tend vers 0 à l'infini:\\
+ 
+ \[\underset{k \to +\infty}{\lim} \lvert \tilde{f(k)} \rvert  =0\]. 
+
+\newpage
+\section{ Transformation de Fourier}.\\
+La transformation de Fourier est le point de départ de la transformation de laplace. C' est une extension de la transformation de Fourier dans l'ensemble des nombres complexes. il est donc important d'aborder cette notion pour mieux comprendre et mieux cerner la Transformation de LAplace dans toute son exactitude \\
+ En effet la transformation de Fourier est l'un des outils importants de la mathématique appliquée. Elle  permet d'attribue à une application, une autre application appelé transformé qui permet d'un domaine temporel à un domaine fréquentiel.
+
+La transformation Fourier est une extension de la théorie des Séries de Fourier à des fonctions non nécessairement périodiques.\\
+
+\textbf{Définition 1.1.1:}  Soit $\mathcal{L}^{1}$ l'ensemble des fonctions définies de $\mathbb{R}$ dans $\mathbb{R}$, continues par morceaux et telles que : \\
+ \[\int_{- \infty}^{- \infty} \lvert f(t) dt \rvert < +\infty \]
+ et soit $f\in \mathcal{L}^{1}(\mathbb{R})$, on appelle \textbf{transformée de Fourier} la fonction $\mathcal{F}(f): \mathbb{R}\rightarrow \mathbb{C}$ telle que :\\
+ 
+ \[F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t}  dt\]\\ lorsque f est une application continue .
+ 
+ \[X[k] = \sum_{n=0}^{N-1} x[n] e^{-i 2\pi k n / N}\] \\
+ lorsque f est une application discrète.\\
+ 
+ \textbf{\textit{•Exemple 1.1.1}} soit $a>0$ et soit $f(t)= e^{-a \lvert t \rvert }$\\
+ 
+ $f$ est une fonction paire alors la transformée de Fourier de $f$ est donnée par :\\
+ \[\mathcal{F}(f)(s)= 2 \int_{0}^{+ \infty}  e^{-at} \cos(2 \pi ) st dt\]\\
+ Par intégration par parties, on obtient :\\
+ 
+ \[\mathcal{F}(f)= \frac{2a}{ a^{2} + 4 {(\pi s})^{2}\]
+ 
+ \subsubsection{ Les  Propriétés de la transformée de Fourier}
+ 
+ \begin{enumerate}
+    \item \textbf{ \textit{Linéarité :}}
+    \[ \mathcal{F}[a f(t) + b g(t)] = a \mathcal{F}[f(t)] + b \mathcal{F}[g(t)] \]
+    
+    \item \textbf{\textit{ Transformée de Fourier de fonctions dérivées :}}
+    \[ \mathcal{F}\left[\frac{df(t)}{dt}\right] = i\omega \mathcal{F}[f(t)] \]
+    
+    \item \textbf{\textit{Transformée de Fourier de fonctions intégrales :}}
+    \[ \mathcal{F}\left[\int_{-\infty}^{t} f(\tau) \, d\tau \right] = \frac{1}{i\omega} \mathcal{F}[f(t)] + 2\pi \delta(\omega) \mathcal{F}[f(0)] \]
+    
+    \item \textbf{\textit{ Dualité :}}
+    \[ \mathcal{F}[F(t)] = 2\pi f(-\omega) \]
+    
+    \item \textbf{\textit{Symétrie (pour une fonction réelle \( f(t) \)) :}}
+    \[ F(-\omega) = \overline{F(\omega)} \]
+    
+    \item \textbf{\textit{Translation dans le temps :}}
+    \[ \mathcal{F}[f(t \pm \tau)] = F(\omega) e^{\mp i\omega\tau} \]
+    
+    \item \textbf{\textit{Modulation en fréquence :}}
+    \[ \mathcal{F}[e^{i\omega_0 t} f(t)] = F(\omega - \omega_0) \]
+    
+    \item \textbf{\textit{Convolution :}}
+    \[ \mathcal{F}[f * g](\omega) = \mathcal{F}[f](\omega) \cdot \mathcal{F}[g](\omega) \]
+\end{enumerate}
+
+
+
+ \subsubsection{ La transformée inverse de la Transformation de Fourier}
+
+\textbf{Définition1.1.2:} Soit $f \in \mathcal{L}^{1}$.\\
+On appelle transformée de Fourier conjugué (ou inverse) de $f$ la fonction.\\
+
+\[\mathcal{F}(f)(s)= \int_{- \infty}^{+ \infty} e^{2 i \pi st} f(t) dt\]\\
+
+\textbf{Théorème 1.1.1:} Formule d'inversion \\
+
+Si $f$ et $\mathcal{F}(f) \in \mathcal{L}^{1}$ alors :\\
+
+\[\mathcal{ \bar{ F}}(\mathcal{F}(f))(t)= \frac{1}{2} \left[f(t+0)-f(t-0) \right]\]\\
+
+où  f(t+0) et f(t-0) répresente la limite à droite et à gauche en t.\\
+
+Si $f$ est continue alors 
+
+ \[\mathcal{ \bar{ F}}(\mathcal{F}(f))(t)= f(t)\].\\
+ 
+ 
+ \subsubsection{  Quelques transformées usuelles de Fourier}
+ 
+ \begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Fonction $f(t)$ & Transformée de Fourier $F(\omega)$ \\
+\hline
+$f(t)$ & $F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t} \, dt$ \\
+\hline
+$\delta(t)$ (impulsion de Dirac) & $1$ \\
+\hline
+$1$ (fonction constante) & $2\pi \delta(\omega)$ \\
+\hline
+$e^{i \omega_0 t}$ & $2\pi \delta(\omega - \omega_0)$ \\
+\hline
+$\cos(\omega_0 t)$ & $\pi [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)]$ \\
+\hline
+$\sin(\omega_0 t)$ & $-i\pi [\delta(\omega - \omega_0) - \delta(\omega + \omega_0)]$ \\
+\hline
+$t$ (rampe) & $i \frac{d}{d\omega} \delta(\omega)$ \\
+\hline
+$\text{rect}(t)$ (fonction porte) & $2\pi \text{sinc}(\omega)$ \\
+\hline
+$\text{sinc}(\omega_0 t)$ & $2\pi \text{rect}(\omega - \omega_0)$ \\
+\hline
+\end{tabular}
+\end{center}
+\newpage
+
+\section{ Transformée de Laplace. }
+Un peu comme la transformée de \textbf{Fourier} la transformée de Laplace appartient à la famille très vaste des \textit{transformées intégrales}, qui établissent une rélation entre une fonction  \textit{f}et sa transformée \textit{F} sous la forme .\\
+\begin{displaymath}
+F(\omega)= \int_{I} K(\omega,t) f(t) \mathit{dt}
+\end{displaymath}\\
+
+Une transformée particulière nécessite donc la définition d'un noyau $\mathbf{K(\omega,t)}$ et de l'intervalle d'intégration I. 
+Dans le cas de la transformation de Laplace, nous avons:
+             
+            \begin{displaymath}
+  I=\mathbb{R^{+}} \hspace*{1 cm} et \hspace*{1cm} \mathbf{K(\omega,t)}=e^{-\omega t}, \mathit{\omega}={\mathit{\omega_r} +\mathit{\omega_i}} \in  \mathbb{C}.
+            \end{displaymath}\\
+            
+\textbf{Définition1.2.1:} \textit{soit une fonction f :$\mathbb{R}^{+} \rightarrow \mathbb{R}$(ou $\mathbb{C})$, la transformée de Laplace (TL) de $\mathfrak{f}$, lorqu'elle existe , est la fonction $\mathcal{L}$f=F de la variable complexe z=x+iy définie par l'intégrale \\}
+
+\begin{displaymath}
+\mathcal{L} \lbrace f(t) \rbrace (z) = \int_{\mathbb{R}} e^{-tz} f(t) \mathit{dt}
+\end{displaymath}\\
+
+La fonction f=$\mathcal{L}^{-1}(F)$ est appelée l'origine de F
+La fonction $\mathcal{L}f$ est appelé l'image de f, par la transformation de Laplace.
+Dans la suite de notre rédaction, nous noterons \textbf{TL}=transformée de Laplace.\\
+
+
+\textbf{Theorème:1.2.1}(\textit{Condition d'existence des \textit{TL}})
+
+ Si  f :$\mathbb{R}^{+}$ $\rightarrow$ $\mathbb{R}$ est une fonction continue par morceaux sur tout intervalle $[0,N[$ fini, et si elle est d'ordre exponentielle $x_0$ c'est à dire  pour tout $t>N$, il existe $M>0$ et N $\in \mathbb{R}$, $ \forall t>N, \lvert e^{-x_0t} f(t) \rvert < M$. , alors sa transformée de Laplace existe pour tout $Re(z)>x_0$\\
+ 
+\textbf{Preuve:} pour tout $N>0$, nous avons :
+
+\[\int_{0}^{+ \infty} e^{-zt} f(t) \mathit{dt}=\int_{0}^{N} e^{-zt} f(t) \mathit{dt}  + \int_{N}^{+ \infty} e^{-zt} f(t) \mathit{dt}\]
+
+
+puisque $f$ est continue par morceaux sur tout intervalle $\left[0,N \right] $ alors l'intégrale \(\int_{0}^{N} e^{-zt} f(t) \mathit{dt}\) existe . Et puisque f est exponentielle d'ordre $x_0$ alors on a:\\
+
+\begin{align*}
+\lvert \int_{N}^{+ \infty} e^{-zt} f(t) \mathit{dt} \rvert 
+ &\leq \int_{N}^{+ \infty} \lvert e^{-zt} f(t) \mathit{dt} \rvert \\
+ &\leq \int_{N}^{+ \infty} \ e^{-zt}  \lvert f(t)\vert \mathit{dt}  \\
+  &\leq \int_{N}^{+ \infty} M e^{x_0 t} e^{-zt} \mathit{dt} =\frac{M}{z-x_0} < + \infty\\
+\end{align*}
+
+\textbf{Remarque:} Pour $t<0$, les valeurs de \textit{f} n'interviennent pas dans la définition. On convient souvent que \textit{$f(t)$}=0 c'est à dire une fonction causale.\\
+
+\textbf{Définition:}Le nombre réel 
+\begin{displaymath}
+x_0=inf\{x\in \mathbb{R} / f(t)e^{-xt}\in L^{1}(\mathbb{R^{+}}\}
+\end{displaymath}
+est appélée \textit{abscisse de sommabilité de f ou abscisse de convergence absolue de f.}\\
+\textbf{Théorème:}  Si f est une fonction de \textbf{\textit{abScisse de convergence   $x_0$ }} alors TL existe dans le demi plan définit par $Re(z)>x_0$.\\
+
+\textbf{Preuve:} soit z=x+iy, pour $Re(z)=x>x_0$, on a:
+
+\[\lvert \mathcal{L}f(z)\rvert \leq \int_{\mathbb{R}_{+}} \lvert f(t) e^{-(x+iy)t} \rvert \mathit{dt} \leq \int_{\mathbb{R}_{+}} \lvert f(t) \rvert e^{-xt}  \mathit{dt}<\int_{\mathbb{R}_{+}} \lvert f(t)\rvert e^{-(x_0t} \mathit{dt}< +\infty\] 
+
+Par conséquent F(z)  est bornée pour $Re(z)>x_0$\\
+
+
+\subsection{ Caractérisation et Holomorphie}
+
+ Avant d'aborder cette notion, rappelon le lien existant entre la transformée de Fourier et celle de Laplace.
+ 
+\subsubsection{ lien entre la transformation de Fourier et la transformation de Laplace.}\\
+
+La transformée de Fourier d'une fonction $\mathit{f}$ est un cas particulier de la transformée \textbf{bilatérale} de Laplace ( la forme la plus générale de la transformation de Laplace, dans laquelle l'intégration se fait de moins l'infini plut\^ot à partir de zéro)\\
+
+\textbf{Proposition 1.3.1.1:} soit $f$ une fonction localement sommable. Sur le domaine de sommabilité, la \textbf{transformé de Laplace} de $f$ peut s'écrire comme une \textbf{transformé de Fourier.}\\
+
+\textbf{Preuve} soit $f$ une fontion de l'abscisse de convergence $x_0$  qui admet une TL telle que $\mathcal{L}{{f(t)}}(z)= F(z)$.
+en posant z=x+i2$\pi$y
+\begin{align*}
+F(z) &= F(x+2iy)= \int_{\mathbb{R}_{+}} e^{-tz} f(t) \mathit{dt}\\
+ &=  \int_{\mathbb{R}} (e^{-tz} f(t) H(t))e^{-2i \pi yt} \mathit{dt} = \mathcal{F}(H(t)f(t) e^{-xt}) \text{pour $x>x_0$}
+\end{align*}
+   
+où $\mathit{F}$ désigne la transformé de Fourier\\
+
+\textbf{Proposition 1.3.2} La TL d'une fonction localement sommable $f$ est une fonction \textsc{holomorphe} dans le domaine d'absolue convergence de la TL (i.e $Re(z)>x_0$ avec $x_0$ l'abscisse absolue de convergence. Et on a la formule:
+\begin{displaymath}
+ \frac{d^{n}F(z)}{dz^{n}} = F^{(n)}(z)=\int_{0}^{+\infty} (-t)^{n}f(t) e^{-zt} dt = (-1)^{n} \mathcal{L} (\lbrace t^{n} f(t)\rbrace (z).
+\end{displaymath}\\
+
+\textbf{Exemple:} soit $g(t)= te^{-at}$ / $a \in \mathbb{R}$\\
+On a az= x+iy et n=1, alors :
+
+\[\mathcal{L} \lbrace te^{-at} \rbrace= \int_{0}^{+ \infty} -t e^{-at}  e^{-zt} dt =\frac{1}{(z+a)^{2}} \] 
+
+Et comme \\
+
+\[F^{'}(z)= -\frac{d}{dz} \left(\frac{1}{z+a)} \right)=\frac{1}{(z+a)^{2}}\] 
+
+alors par comparaison on a
+
+\[\mathcal{L}(g(t)) =\frac{1}{(z+a)^2} \]
+
+On convient que le domaine d'absolue convergence est $\emptyset$ (respectivement $\mathbb{C}$) si $x_0=-\infty$ (respectivement $x_0=+\infty$)\\
+
+\textbf{Preuve} En effet les deux fonctions $f(t)e^{-xt}$ et $(-t)^{n}f(t)e^{-zt}$ ont le m\^eme comportement à l'infini, donc la m\^eme abscisse absolue de convergence.
+
+\[  \lvert(-t)^{n}f(t)e^{-zt]}\rvert \leq t^{n}|f(t)|e^{-x_0t}
+\]
+
+La fonction majorante étante intégrable , on peut donc permuter la dérivationet le signe intégrale et on a le résultat.\\
+
+\subsection{Propriétés de la transformée de Laplace}
+
+Ici, nous soulignons sauf mention explicite du contraire que toutes les fonctions vérifient les conditions suffisante de l'existence de la transformée de Laplace.\\
+
+\subsubsection{ La linéarité:}
+
+La transformation de Laplace est une application\textbf{linéaire}, c'est à dire pour tout $\alpha$ et $\beta$ \in $\mathbb{C}$, et pour toutes fonctions $C_L$ $f$ et $g$ d'abscises sommables $x_1$ et $x_2$. On a 
+\begin{large}
+\begin{displaymath}
+$\mathcal{L}{\left\lbrace\alpha f +\beta g \right\rbrace}(t)}}(z)= \alpha \mathcal{L}{{f(t)}}(z)+\beta \mathcal{L}{{g(t)}}(z)=\alpha F(z) + \beta G(z)$
+\end{displaymath}
+\end{large}\\
+où $Re(z) > max(x_1,x_2)$\\
+
+\textbf{Preuve:} La transformation de Laplace étant une fonction intégrale alors elle est linéaire du fait de la linéarité de l'intégrale.\\
+
+\subsubsection{ La continuité:}
+
+si f: $\mathbb{R}^{+} \rightarrow \mathbb{C}$ est continue et l'intégrale impropre de f sur 0 à $+\infty$ converge alors $\mathcal{L}f(x)$ est bien défini pour tout réel supérieur ou égale à 0 et $\mathcal{L}f$ est continue sur $\mathbb{R}_{+}$. En particulier , \\
+
+\begin{displaymath}
+  \int_{0}^{+\infty} f(z) dz= \lim_{t\rightarrow 0^{+}} \mathcal{L}(f)
+\end{displaymath}
+
+\subsubsection{ Conjugaison complexe:}
+
+Soit $f \in \mathrm{C}_{L}$ , d'abscisse de sommabilité $x_0$.\\
+Si $\mathcal{L}f(t) = F(z)$ alors
+
+     \begin{displaymath}
+       \mathcal{L} \bar{f(x)}= \bar{F(\bar{z})} 
+      \end{displaymath}
+   
+\textbf{Preuve:} cela s'obtient par définition de la transformée de Laplace.\\
+
+\subsubsection{ la dérivation et l'Intégration.}  
+
+\textbf{Théorème 1.4.1:} soit $f$ une fonction continue sur $\mathbb{R}_{+}$ et non nul où  $\[\underset{x \to 0^{+}}{\lim}f(t) =f(0^{+})$ existe. On suppose en outre que $f^{'}$ est une fonction continue par morceaux qui admet \textit{TL}; alors:\\
+       
+\begin{displaymath}
+\mathcal{L}{\left\lbrace f^{'}(t)\right\rbrace} = 
+zF(z)-f(0^{+}).
+\end{displaymath}
+               
+\textbf{Preuve:}\\
+\begin{displaymath}
+\mathcal{L} \lbrace f^{(n)}(t) \rbrace (z)= z^{n}F(z)- \sum_{k=1}^{n} z^{k-1} f^{(n-k)} (0^{+})
+\end{displaymath}\\
+
+La TL d'une dérivée revient essentiellement à le multiplier  par z. Alors une division par z correspond à une intégration de la fonction.
+\textbf{Proposition1.4.1:} la transformée d'une primitive F 
+est donnée par la formule suivante :\\
+
+\begin{large}
+\begin{displaymath}
+$\mathcal{L}{\lbrace f(t)\rbrace}(z)=\frac{\mathcal{L}{\left\lbrace f(t)\rbrace}(z)}{z}=\frac{F(z)}{z}$
+\end{displaymath}
+\end{large}\\
+
+\textbf{Preuve:} posons $g(t)=\int_{0}^{t} f(x) dx$ alors $g^{'}(t)=f(t)$  et g(0)=0\\
+
+Alors $ \mathcal{L} (f)= \mathcal{L} (g^{'})$\\
+
+d'après le theorème de la derivabilité , on a le résultat.\\
+
+
+\subsubsection{Changement d'echelle (dilatation):}
+
+soit $f \in \mathcal{C}_{L}$, d'abscisse de sommabilité $x_0$, et soit un réel C $>$ 0. Si $\mathcal{L}{\left\lbrace f(t)\rbrace}(z)= F(z)$, alors :\\
+
+$\mathcal{L}{\lbrace f(Ct)\rbrace}(z)= \frac{1}{C}F{\left(\frac{z}{C}\right)}$.\\
+
+\textbf{Preuve:} en posant $h=Ct$ et en effectuant un changement de variable dans la formule de la transformée de Laplace, on obtient le résultat.\\
+
+\subsubsection{ Convolution:}
+
+\textbf{Définition 1.4.1} (\textbf{produit de convolution}) Soient f et g deux fonctions localement sommables. Leur prduit de convolution est donnée par :\\
+
+\begin{displaymath}
+  (f*g)(t)=\int_{-\infty}^{+\infty} f(t^{'})g(t-t^{'})dt^{'}
+\end{displaymath} 
+
+$f$ et $g$ sont causales. $(f*g)$ est aussi causale car $f(t^{'})=0$ pour $t^{'}<0$.\\
+
+\textbf{Théorème 1.4.2} sooient f et g deux fonctions causales et convolables en tout $t\geq 0$, d'abscisses de sommabilité respectives $x_{01}$ et $x_{02}$, telles que $\mathcal{L}(f*g)$ existent. Alors \\
+\[\mathcal{L}{\left\lbrace\left[f*g\right]\right\lbrace}(z)= F(z).G(z)$ pour $Re(z)>x_0= max(x_{01},x_{02})\]
+
+\textbf{Preuve.} En utllsant la définition du produit de convolution on obtient:\\
+
+\begin{align*}
+\mathcal{L} \lbrace \left[f*g \right](t) \rbrace (z) &= \int_{0}^{+\infty} \left(f*g \right) (t) e^{-zt} dt\\
+&=\int_{0}^{+\infty} e^{-zt} \left[\int_{0}^{t} f(t^{'})g((t-t^{'})dt^{'} \right]dt\\
+&= \int_{0}^{+\infty} e^{-zt} e^{-zt^{'}} \left[\int_{0}^{t} f(t^{'})g((t-t^{'})dt^{'} \right]dt\\
+&=\int_{0}^{+\infty}  e^{-zt^{'}} f(t^{'})dt^{'} \int_{t^{'}}^{+\infty} e^{-z (t-t^{'})} g((t-t^{'})dt
+\end{align*}\\
+En posant $t=t^{'} +r$ dans $\int_{t^{'}}^{+\infty} e^{-z (t-t^{'})} g((t-t^{'})dt$  on obtient :
+\begin{align*}
+\mathcal{L} \lbrace \left[f+g \right](t) \rbrace (z) &=\int_{0}^{+\infty}  e^{-zt^{'}}f(t^{'})dt^{'} \int_{0}^{+\infty}  e^{-z(r)} g(r)dr \\
+&=F(z)G(z)
+\end{align*}
+
+\subsection{ Comportements  asymptotiques}
+
+soit $f$: $\left[0,+\infty [ \rightarrow \mathbb{R}$  une fonction continue par morceaux. Supposons sa transformée de Laplace $F$ définie pour $Re(z)>0$. \'Etudidions le comportement asymptotique de $F$ aux bornes de $\mathbb{R}_{+}$.\\
+
+\subsubsection{ Comportement à l'infini.}
+
+
+\textbf{Théorème1.5.1} soit f une fonction d'abscisse absolue de convergence $x_0$, alors :\\
+$\[\underset{\lvert z \rvert \to + \infty}{\lim} f(z) = 0\] pour $Re(z)>x_0$.\\
+\textbf{Preuve.}\\
+Soit $F(z) = \int_{\mathbb{R}^{+}} f(t) e^{-zt} dt$. POsons $z=s+ \pi iy = s+i\omega$\\
+
+on a :
+\begin{displaymath}
+F(z) = \int_{\mathbb{R}^{+}} (f(t) e^{st}) e^{-i \omega t}  dt
+\end{displaymath}\\
+ Cela résulte du lemme de Riemman-lebesgue,
+ 
+\[F(z) ={\lim_{\omega \rightarrow  +\infty }} \int_{\mathbb{R}^{+}} {(f(t) e^{st}) e^{-i \omega t}  dt= 0}\]
+
+Puisque $f(t) e^{st} \in \mathbb{L}^{1}(\mathbb{R}^{+})$\\
+
+\subsubsection{ Théorème de la valeur initiale}
+
+\textsf{Théorème 1.5.2} Soit $f \in \mathrm{L}^{1}(\mathbb{R}^{+})$. SI $\lim_{ t\rightarrow 0^{+}} f(t)=f( 0^{+})$, alors $\mathcal{L}f$ vérifie :\\
+
+\[\underset{\lvert z \rvert \to + \infty}{\lim} zF(z) =f( 0^{+}) \] 
+
+\textbf{Preuve} on a \\
+
+$\mathcal{L}{\left\lbrace f^{'}(t)\right\rbrace}(z)=z F(z) -f(0^{+})$  \text{d'après la dérivation}\\
+
+Toute Tl tend vers 0 lorsque z tend vers $+ \infty$ .\\
+
+Ainsi donc nous avons :\\
+
+$\[\underset{\lvert z \rvert \to + \infty}{\lim} zF(z) =f( 0^{+}) \] .\\
+
+\textbf{Exemple 1.5.2}\\
+
+Soit \( f(t) = e^{-2t} \).\\
+ Trouvons \( f(0^+) \) en utilisant le théorème de la valeur initiale\\
+
+D'après le théorème de la valeur initiale:
+\[ f(0^+) = \lim_{t \to 0^+} f(t) = \lim_{s \to \infty} s F(s) \]
+
+Calculons \( s F(s) \):
+\[ s F(s) = s \cdot \frac{1}{s+2} = \frac{s}{s+2} \]
+
+En calculant la limite lorsque \( s \to \infty \):
+\[ \lim_{s \to \infty} \frac{s}{s+2} = 1 \]
+
+Donc, \( f(0^+) = 1 \).\\
+
+\subsubsection{Théorème de la valeur finale }
+
+\textbf{Théorème 1.5.3} soit  $f \in \mathrm{L}^{1}(\mathbb{R}^{+})$. SI $ \lim_{ t\rightarrow +\infty} f(t)=f( + \infty)$, alors $\mathcal{L}f$ vérifie :\\
+
+\[\underset{\lvert z \rvert \to + 0^{+}}{\lim} zF(z) =f( + \infty) \]
+
+\textbf{Preuve:} lorsque $Re >0$, $\lvert e^{-zt}f^{'}(t) \rvert \leq \lvert f^{'}(t)  \rvert$. D'après le théorème des convergences dominées on a:\\
+
+\begin{displaymath}
+$\[\underset{z \to + 0^{+}}{\lim} \left(\int_{\mathbb{R}^{+}} f^{'}(t) e^{-zt} dt \right)  = \int_{\mathbb{R}^{+}} f^{'}(t)dt \] = $f(+\infty)- f(0^{+})$.\\
+\end{displaymath}
+
+Or  nous avons $f^{'}$ donne  $zF(z)-f(0^{+})$\\
+on obtient donc :\\
+
+$\[\underset{z \to + 0^{+}}{\lim} \left(\int_{\mathbb{R}^{+}} f^{'}(t) e^{-zt} dt \right)  = \lim_{z \rightarrow 0}zF(z)-f(0^{+}) \]\\
+
+alors:\\
+\begin{displaymath}
+\lim_{z \rightarrow 0} zF(z)-f(0^{+})= f(+\infty) -f(0^{+})
+\end{displaymath}\\
+
+D'ou le résultat.\\
+
+\textbf{Exemple 1.5.3}\\
+
+Soit \( f(t) = \frac{1}{2} e^{-t} \). Trouvons \( \lim_{t \to \infty} f(t) \) en utilisant le théorème de la valeur finale.\\
+
+La transformée de Laplace de \( f(t) \) est donnée par \( F(s) = \frac{1}{2(s+1)} \).\\
+
+Selon le théorème de la valeur finale:
+\[ \lim_{t \to \infty} f(t) = \lim_{s \to 0} s F(s) \]
+
+Calculons \( s F(s) \):
+\[ s F(s) = s \cdot \frac{1}{2(s+1)} = \frac{s}{2(s+1)} \]
+
+En calculant la limite lorsque \( s \to 0 \):
+\[ \lim_{s \to 0} \frac{s}{2(s+1)} = \frac{1}{2} \]
+
+Donc, \( \lim_{t \to \infty} f(t) = \frac{1}{2} \).\\
+
+
+\textbf{Remarque :} Ces deux théorèmes sont très importants car ils parmettent de vérifier 'exactitude de la transformée de Laplace\\
+
+
+ 
+\section{ L'inverse de la transformée de Laplace.}
+
+La transformation de Laplace permet de résoudre des problèmes mathématiques les plus ou moins complexes. L'un des plus grands *$intér\^ets$ de son utilisation est que la transformée de Laplace  permet d'associer à une fonction, une nouvelle fonction rendant algébrique les équations différentielles définit sur la fonction principale. Ces avantages seraient sans intér\^et si l'on ne sait pas calculer \textbf{la transformée inverse d'une transformée donnée.}\\
+
+\textbf{\emph{Définition 1.6.1}} La  transformée inverse de Laplace d'une fonction holomorphe $F(p)$est une fonction $f(t)$ continue par morceaux, qui a la propriété : $\mathcal{L}\left\lbrace f \right\rbrace = F$ c'est à dire :
+\begin{displaymath}
+ \int_{0}^{+\infty} e^{-zt}f(t) \mathit{dt}= F(z)\\
+ \end{displaymath}\\
+ on a:
+\begin{displaymath} 
+f(t) = \int_{\mathbb{R}_{+}}F(z) e^{zt} \mathit{dz}, t \leq 0
+\end{displaymath}\\
+
+L'opérateur $\mathcal{L}^{-1}$ vérifie les propriétés similaires à celles vérifiées par son opérateur inverse $\mathcal{L}$\\
+
+\subsubsection{ Formule de Bromwich-Wagner:}}\\
+
+\textbf{Théorème 1.6.1 } Soit $\mathcal{L}f(x+i2 \pi y)$ est sommable sur $\mathbb{R}$.; alors l'originale $f$ est retrouvé par la relation :\\
+    \begin{displaymath}
+H(t)f(t)={\frac{1}{2 \pi i}}\int_{B} \mathcal{L}f(z) e^{zt}
+     \end{displaymath}\\
+     
+où B est la drote parallèle à l'axe imaginaire d'abscisse $x>x_0$ appelée droit de Bromwich. \\
+
+\textbf{Preuve :} Pour $x>x_0$, la transformation de Laplace $\mathcal{L}$f peut s'exprimer comme une transformée de Fourier.\\
+ \begin{displaymath}
+\mathcal{L} f(x+2 i \pi y)= F\left[H(t) f(t)e^{-xt}\right](y)= \mathit{F}(H(t)f(t)e^{-xt})  \text{d'après (1.2)}
+\end{displaymath}\\
+
+En utilisant la formule de Fourier, on obtient:
+
+\begin{align*}
+
+$H(t)f(t)$ &= $e^{xt} \int_{\mathbb{R}} \mathcal{L} f(x+i2 \pi y) e^{i2 \pi yt} \mathit{dy}$  \\
+
+         &= $\frac{1}{2 \pi i}$ $ \int_{x-2i \pi y}^{x+2 i \pi y} \mathcal{L} f(z) e^{zt} \mathit{dz}$ \\
+       
+&= $\frac{1}{2 \pi i}$ {\int_{B} \mathcal{L} f(z) e^{zt} \mathit{dz}} 
+
+ \end{align*}
+
+\subsubsection{Formule de Heaviside:}} \\
+
+\textbf{Définition1.6.2} soit P et Q deux polyn\^omes tels que $d^{0}(P) < d^{0}(Q)$, et soit $\alpha_{1}, \alpha_{2},..., \alpha_{n}$ les zéros de Q qu'on suppose simples, on suppose de plus que la fraction rationnelle $F(z)={ \frac{P(z)}{Q(z)}}$ est irréductible.\\
+La formule de \textbf{Herviside} permet de trouver l'origine d'une fraction rationnelle, elle est donnée par :
+\begin{displaymath}
+f(t)=\mathcal{L}^{-1}(F)(t)= \sum_{i=1}^{n} {\frac{P(\alpha_{i})}{Q(\alpha_{i})} } e^{ t \alpha_{i}} 
+\end{displaymath}\\
+En décomposant les éléments simples, on a :
+\begin{displaymath}
+F(z)= {\frac{A_{1}}{z- \alpha_{1}}} +{\frac{A_{2}}{z- \alpha_{2}}}+...+{\frac{A_{n}}{z- \alpha_{n}}}
+\end{displaymath}
+
+\textbf{Exemple 1.6.1: (application de la formule de Heaviside})\\ 
+
+Soit la fonction 
+\begin{displaymath}
+F(z)= \frac{ 2z +1}{z^{2}+z-2}
+\end{displaymath}
+
+\textit{La transformée inverse de Laplace de F est:}\\
+On a: \\
+
+\begin{displaymath}
+$z^{2}+z-2$= $(z+2)(z-1)$ \\
+
+ F(z)= ${\frac{A}{z-1}}$ + ${\frac {B}{z+2}$ \\
+ 
+   \hspace{5}  A=B=1 \vspace{1}
+
+\hspace{4}  F(z)=${\frac{1}{z-1}}$ + ${\frac{1}{z+2}$
+\end{large}
+\end{displaymath}\\
+Alors:
+\begin{displaymath}
+f(t)=\mathcal{L}^{-1} \left({\frac{1}{z+2} +\frac{1}{z-1}}\right)\\
+\end{displaymath}\\
+\begin{displaymath}
+   f(t)=e^{t} + e^{-2t}
+\end{displaymath}
+
+\textbf{Exemple 1.6.2} ( application de la formule de \textbf{Bromwich-wagner})\\
+
+Considérons la transformée de Laplace suivante:
+\[ F(s) = \frac{1}{s(s+1)} \]
+
+Nous voulons trouver \( f(t) \) tel que \( \mathcal{L}\{f(t)\} = F(s) \).\\
+
+D'après la formule de Bromwich-Wagner pour l'inverse de la transformation de Laplace on a:
+\[ f(t) = \frac{1}{2\pi i} \int_{\gamma - i\infty}^{\gamma + i\infty} e^{st} F(s) \, ds \]
+
+où \( \gamma \) est une ligne parallèle à l'axe imaginaire à droite de tous les pôles de \( F(s) \).\\
+
+Pour \( F(s) = \frac{1}{s(s+1)} \), les pôles sont en \( s = 0 \) et \( s = -1 \).\\
+
+Choisissons \( \gamma = 1 \), de sorte que tous les pôles de \( F(s) \) soient à gauche de \( \gamma \).
+
+\[ f(t) = \frac{1}{2\pi i} \int_{1 - i\infty}^{1 + i\infty} e^{st} \frac{1}{s(s+1)} \, ds \]
+
+D'après le théorème des résidus\\
+
+\[ f(t) = \frac{1}{2\pi i} \int_{1 - i\infty}^{1 + i\infty} e^{st} \frac{1}{s(s+1)} \, ds = \text{Résidu en } s=0 + \text{Résidu en } s=-1 \]
+
+
+**Résidu en \( s = 0 \):**
+
+\[
+\text{Résidu}_{s=0} = \lim_{s \to 0} s \cdot \frac{e^{st}}{s(s+1)} = \lim_{s \to 0} \frac{e^{st}}{s+1} = \frac{1}{1} = 1
+\]
+
+**Résidu en \( s = -1 \):**
+
+\[
+\text{Résidu}_{s=-1} = \lim_{s \to -1} (s + 1) \cdot \frac{e^{st}}{s(s+1)} = \lim_{s \to -1} \frac{e^{st}}{s} = -e^{-t}
+\]
+
+Alors\\
+
+\[ f(t) = \text{Résidu}_{s=0} + \text{Résidu}_{s=-1} = 1 - e^{-t} \]
+
+Donc, la solution de l'intégrale est \( f(t) = 1 - e^{-t} \).
+
+
+
+Ainsi on trouve que:
+
+\[ f(t) = 1 - e^{-t} \]
+
+
+\newpage
+
+\section{  Transformations usuelles de la transformation de Laplace}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|}
+\hline
+$f(t)$ & $F(z)$ (Transformée de Laplace) \\
+\hline
+$m$ & $\frac{m}{z}$ \\
+\hline
+$\alpha t^n$ ($n \geq 0$) & $\frac{ \alpha n!}{(z- \alpha)^{n+1}}$ \\
+\hline
+$me^{at}$ & $\frac{m}{z - a}$ , $\mathrm{Re}(z) > \mathrm{Re}(a)$ \\
+\hline
+$\sin(at)$ & $\frac{a}{z^2 + a^2}$ \\
+\hline
+$\cos(at)$ & $\frac{z}{z^2 + a^2}$ \\
+\hline
+$\sinh(at)$ & $\frac{a}{z^2 - a^2}$ \\
+\hline
+$\cosh(at)$ & $\frac{z}{z^2 - a^2}$ \\
+\hline
+$t^n e^{at}$ ($n \geq 0$) & $\frac{n!}{(z-a)^{n+1}}$ \\
+\hline
+$\delta(t)$ (impulsion unité) & $1$ \\
+\hline
+$e^{at}\cos(bt)$ & $\frac{z-a}{(z-a)^{2}+b^{2}}$ \\
+\hline
+$e^{at} \sin(bt)$ & $\frac{a}{(z-a)^{2}+b^{2}}$\\
+\hline
+$t^n$ &  $\frac{n!}{z^{n+1}}$ \\
+\hline
+$H(t-t_0)$ & $e^{-z t_0}$\\
+\hline
+\end{tabular}
+\end{center}
+\\
+\section{La transformé de Laplace au sens des distributions}
+
+La transformée de Laplace est un outil puissant pour analyser des systèmes dynamiques et résoudre des équations différentielles. Toutefois, dans de nombreux cas pratiques, nous rencontrons des signaux ou des fonctions qui ne sont pas bien comportés au sens classique, comme les impulsions de Dirac ou les fonctions avec des discontinuités. Pour traiter ces cas, nous utilisons la théorie des distributions, aussi connue sous le nom de fonctions généralisées, permettant d'étendre la transformée de Laplace à ces fonctions singulières.
+
+\subsubsection{Définition de la Transformée de Laplace pour les Distributions}
+
+Soit \( T \) une distribution dans \( \mathcal{D}'(\mathbb{R}) \). La transformée de Laplace \( \mathcal{L} \{ T \}(s) \) de \( T \) est définie par :
+\[
+\mathcal{L} \{ T \}(s) = \int_0^\infty e^{-st} T(t) \, dt,
+\]
+où l'intégrale est interprétée au sens des distributions. Cela signifie que pour toute fonction test \( \varphi(t) \) dans \( \mathcal{D}(\mathbb{R}) \), nous avons :
+\[
+\left< \mathcal{L} \{ T \}(s), \varphi(t) \right> = \left< T(t), e^{-st} \varphi(t) \right>.
+\]
+
+\subsubsection{ Propriétés de la Transformée de Laplace des Distributions}
+
+La transformée de Laplace au sens des distributions partage plusieurs propriétés avec la transformée de Laplace classique. Voici quelques propriétés importantes :
+
+\begin{enumerate}
+    \item \textbf{Linéarité :}
+    \[
+    \mathcal{L} \{ aT + bS \}(s) = a \mathcal{L} \{ T \}(s) + b \mathcal{L} \{ S \}(s),
+    \]
+    où \( T \) et \( S \) sont des distributions et \( a, b \) sont des scalaires.
+
+    \item \textbf{Dérivation :}
+    La transformée de Laplace de la dérivée d'une distribution \( T \) est donnée par :
+    \[
+    \mathcal{L} \{ T'(t) \}(s) = s \mathcal{L} \{ T(t) \}(s) - T(0),
+    \]
+    où \( T(0) \) est la valeur de la distribution \( T \) évaluée en \( t = 0 \).
+
+    \item \textbf{Multiplication par \( t^n \) :}
+    Si \( T(t) \) est une distribution, alors :
+    \[
+    \mathcal{L} \{ t^n T(t) \}(s) = (-1)^n \frac{d^n}{ds^n} \mathcal{L} \{ T(t) \}(s).
+    \]
+\end{enumerate}
+
+\subsubsection{  Exemple : La Transformée de Laplace de la Distribution de Dirac}
+
+Considérons la distribution de Dirac \( \delta(t) \). La transformée de Laplace de \( \delta(t) \) est définie par :
+\[
+\mathcal{L} \{ \delta(t) \}(s) = \int_0^\infty e^{-st} \delta(t) \, dt.
+\]
+
+En utilisant la propriété de la distribution de Dirac, qui est \( \int_{-\infty}^{\infty} f(t) \delta(t - t_0) \, dt = f(t_0) \), nous obtenons :
+\[
+\mathcal{L} \{ \delta(t) \}(s) = e^{-s \cdot 0} = 1.
+\]
+
+
+\newpage
+\chapter{Applications de la transformation de Laplace}
+
+
+
+ \section{ \'Equation différentielles à coefficients constantes}
+Soit une équation différentielle linéaire d'ordre n à ccoefficients constants \\
+\[a_n y^{(n)} + a_{n-1} y^{(n-1)}+...+a_1 y^{'}+a_0 y= f(t)\]\\
+
+On demande de trouver la solution de cette équation $y=y(t)$ pour  $t \leq 0$  et vérifiant les conditions initiales :\\
+
+$y(0)=y_0$,   $ y^{'}(0) = y_{0}^{'}$, ...., $y^{(n-1)}= y_{0}^{(n-1)}$\\
+
+\textbf{\'Etape 1:} Appliquer la transformation de Laplace des deux membres de l'équation :\\
+
+\[ \mathcal{L} \lbrace a_n y^{(n)} + a_{n-1} y^{(n-1)}+...+a_1 y^{'}+a_0 y \rbrace (z) = \mathcal{L} \lbrace f(t) \rbrace (z)\]
+\\
+
+En utilisant les propriétés de linéarité \\
+
+\[a_n \mathcal{L} \lbrace y^{(n)} \rbrace (z) +  a_{n-1} \mathcal{L} \lbrace y^{(n-1)} \rbrace(z) +...+ a_1  \mathcal{L} \lbrace y^{'} \rbrace(z) +a_0  \mathcal{L} \lbrace y \rbrace = \mathcal{L} \lbrace f(t) \rbrace (z)\] \\
+
+Sachant que :\\
+
+\[ \mathcal{L} \lbrace f^{k}(t) \rbrace(z)= z^{k}F(z)- \sum_{i=1}^{k} z^{i-1}  f^{k-1} (0^{+}) \].\\
+
+\textbf{\'Etape 2}: En utilisant des techniques algébriques , on obtient la solution Y(z)\\
+
+\textbf{\'Etape 3 :} Retrouvez $y(t)$ en utilisant la transformation inverse sur Y(z).\\
+
+\textbf{\textit{Exemple 2.1.1}}  Déterminons les solutions de l'équation différentielle ci après :
+
+\[y^{"}(t) + 3 y^{'}(t)+2y(t)= e^{-t}\]\\
+
+avec les conditions initiales ( y(0)=1)  et $(y^{'}(0)=0$ \\
+
+
+Appliquons la transformation de Laplace aux deux côtés de l'équation :
+
+\[
+\mathcal{L}\{y''(t)\} + 3\mathcal{L}\{y'(t)\} + 2\mathcal{L}\{y(t)\} = \mathcal{L}\{e^{-t}\}
+\]
+
+En utilisant les propriétés de la transformation de Laplace, nous avons :
+
+\[
+s^2 Y(s) - s y(0) - y'(0) + 3 \left( s Y(s) - y(0) \right) + 2Y(s) = \frac{1}{s+1}
+\]
+
+En substituant les conditions initiales \( y(0) = 1 \) et \( y'(0) = 0 \), nous obtenons :
+
+\[
+s^2 Y(s) - s + 3 (s Y(s) - 1) + 2 Y(s) = \frac{1}{s+1}
+\]
+
+Simplifions cette expression :
+
+\[
+(s^2 + 3s + 2)Y(s) - s - 3 = \frac{1}{s+1}
+\]
+
+Réorganisons pour isoler \( Y(s) \) :
+
+\[
+Y(s) = \frac{\frac{1+(s+3)(s+1)}{s+1}}{s^2 + 3s + 2}
+\]
+
+Factorisons le dénominateur :
+
+\[
+Y(s) = \frac{(s+2)^{2}}{(s+1)^{2} (s+2)}
+\]
+
+Décomposons en fractions partielles :
+
+\[\frac{(s+2)^{2}}{(s+1)^{2}(s+2)}= \frac{1}{(s+1)^{2}} +\frac{1}{(s+1)}\]
+
+
+Ainsi :
+
+\[
+Y(s) = \frac{1}{(s+1)^{2}} +\frac{1}{(s+1)}
+\]
+
+Appliquons la transformation inverse de Laplace :
+
+\[
+y(t) = e^{-t} + te^{-t}
+\]
+
+Ainsi, la solution de l'équation différentielle est :
+
+\[
+y(t) = e^{-t} + te^{-t}
+\]\\
+
+\section{ \'equation différentielles à coefficients variables }
+La transformée peut \^etre également utiser pour les équations non constants. \\
+
+Soit une équation différentiellle définit par : 
+    \[t y^{'}(t) + y(t)= t^2\] \\
+    
+    Trouvons  les solutions de cette équation\\
+    
+    Considérons l'équation différentielle :\\
+
+
+Appliquons la transformation de Laplace aux deux côtés de l'équation. Nous utiliserons la propriété de la transformation de Laplace pour les termes impliquant des produits de \( t \) avec les fonctions :
+
+\[
+\mathcal{L}\{t f(t)\} = -\frac{d}{ds} F(s)
+\]
+
+En appliquant cette propriété à l'équation donnée, nous avons :
+
+\[
+\mathcal{L}\{t y'(t)\} + \mathcal{L}\{y(t)\} = \mathcal{L}\{t^2\}
+\]
+
+En utilisant les propriétés de la transformation de Laplace pour chaque terme, nous obtenons :
+
+\[
+-\frac{d}{ds} \mathcal{L}\{y'(t)\} + \mathcal{L}\{y(t)\} = \frac{2}{s^3}
+\]
+
+Rappelons que :
+
+\[
+\mathcal{L}\{y'(t)\} = s Y(s) - y(0)
+\]
+
+Avec la condition initiale \( y(0) = 0 \), nous avons :
+
+\[
+\mathcal{L}\{y'(t)\} = s Y(s)
+\]
+
+Substituons cela dans l'équation :
+
+\[
+-\frac{d}{ds} (s Y(s)) + Y(s) = \frac{2}{s^3}
+\]
+
+Calculons la dérivée :
+
+\[
+-s \frac{d}{ds} Y(s) - Y(s) + Y(s) = \frac{2}{s^3}
+\]
+
+Simplifions l'expression :
+
+\[
+-s \frac{d}{ds} Y(s) = \frac{2}{s^3}
+\]
+
+Pour résoudre cette équation différentielle en \( s \), nous intégrons les deux côtés par rapport à \( s \) :
+
+\[
+-s Y(s) = \int \frac{2}{s^3} ds
+\]
+
+En intégrant, nous obtenons :
+
+\[
+-s Y(s) = -\frac{1}{s^2} + C
+\]
+
+où \( C \) est une constante d'intégration. Comme \( y(0) = 0 \), nous pouvons utiliser cette condition pour déterminer \( C \). Pour \( s \) très grand, \( Y(s) \) devrait tendre vers zéro, donc \( C = 0 \). Ainsi :
+
+\[
+Y(s) = \frac{1}{s^3}
+\]
+
+Prenons la transformation inverse de Laplace pour obtenir \( y(t) \) :
+
+\[
+\mathcal{L}^{-1}\left\{\frac{1}{s^3}\right\} = \frac{t^2}{2}
+\]
+
+Donc la solution de l'équation différentielle est :
+
+\[
+y(t) = \frac{t^2}{2}
+\]
+
+    
+
+\section{ \'Equations aux dérivées partielles linéaires}
+
+L'équation différentielle partielle (\textbf{EDP})  est une équation différentielle ordinaire (\textbf{EDO}) pour la fonction de plusieurs variabkes. Nous la trouvons principalement dans toutes les équations de la physique.\\
+
+\textbf{Exemple 3.2.1}\\
+Considérons l'équation aux dérivées partielles de diffusion de chaleur :
+
+\[
+u_t(x,t) = k u_{xx}(x,t)
+\]
+
+avec les conditions initiales et aux bords \( u(x,0) = f(x) \) et \( u(0,t) = 0 \).
+
+\bigskip
+
+Nous appliquons la transformation de Laplace par rapport à la variable \( t \). La transformation de Laplace d'une dérivée par rapport à \( t \) est donnée par :
+
+\[
+\mathcal{L}\{u_t(x,t)\} = s \mathcal{L}\{u(x,t)\} - u(x,0)
+\]
+
+et pour la dérivée seconde par rapport à \( x \) :
+
+\[
+\mathcal{L}\{u_{xx}(x,t)\} = \mathcal{L}\{U_{xx}(x,s)\}
+\]
+
+Appliquons la transformation de Laplace à l'équation donnée :
+
+\[
+\mathcal{L}\{u_t(x,t)\} = k \mathcal{L}\{u_{xx}(x,t)\}
+\]
+
+En utilisant les propriétés de la transformation de Laplace, nous obtenons :
+
+\[
+s U(x,s) - f(x) = k U_{xx}(x,s)
+\]
+
+où \( U(x,s) = \mathcal{L}\{u(x,t)\} \).
+
+Réorganisons cette équation pour obtenir une équation différentielle ordinaire pour \( U(x,s) \) :
+
+\[
+k U_{xx}(x,s) - s U(x,s) = -f(x)
+\]
+
+La solution générale de cette équation différentielle est de la forme :
+
+\[
+U(x,s) = A(s) e^{\sqrt{\frac{s}{k}} x} + B(s) e^{-\sqrt{\frac{s}{k}} x} + \frac{f(x)}{s}
+\]
+
+Pour satisfaire la condition aux bords \( u(0,t) = 0 \), donc \( U(0,s) = 0 \), nous obtenons :
+
+\[
+U(0,s) = A(s) + B(s) = 0 \implies B(s) = -A(s)
+\]
+
+Ainsi, nous avons :
+
+\[
+U(x,s) = A(s) \left( e^{\sqrt{\frac{s}{k}} x} - e^{-\sqrt{\frac{s}{k}} x} \right) + \frac{f(x)}{s}
+\]
+
+En utilisant la condition initiale \( u(x,0) = f(x) \), la solution dans le domaine de Laplace devient :
+
+\[
+U(x,s) = \frac{f(x)}{s}
+\]
+
+Revenons à la variable temporelle en prenant la transformation inverse de Laplace :
+
+\[
+u(x,t) = \mathcal{L}^{-1} \left\{\frac{f(x)}{s}\right\} = f(x)
+\]
+
+Ainsi, la solution est :
+
+\[
+u(x,t) = f(x)
+\]
+
+
+\section{ \'Equations intégrales }
+
+La transformée de Laplace facilite la résolution et l'étude des équations intégrales ( équation de Volterra, équation intégrales d'Abel). \\
+
+\textbf{3.3.1 \'Equation de Volterra}
+
+
+Considérons l'équation de Volterra de deuxième espèce :
+
+\[
+y(t) = t - \int_0^t (t - \tau) y(\tau) \, d\tau
+\]
+
+Appliquons la transformation de Laplace à cette équation. En notant \( Y(s) \) la transformation de Laplace de \( y(t) \), nous avons :
+
+\[
+\mathcal{L}\{y(t)\} = \mathcal{L}\left\{ t - \int_0^t (t - \tau) y(\tau) \, d\tau \right\}
+\]
+
+Utilisons les propriétés de linéarité de la transformation de Laplace et les théorèmes relatifs à la convolution. La transformation de Laplace de \( t \) est :
+
+\[
+\mathcal{L}\{t\} = \frac{1}{s^2}
+\]
+
+Pour le terme intégral, nous utilisons le théorème de la convolution :
+
+\[
+\mathcal{L}\left\{ \int_0^t (t - \tau) y(\tau) \, d\tau \right\} = \mathcal{L}\{t\} \cdot \mathcal{L}\{y(t)\}
+\]
+
+Sachant que \( \mathcal{L}\{t\} = \frac{1}{s^2} \), nous obtenons :
+
+\[
+\mathcal{L}\left\{ \int_0^t (t - \tau) y(\tau) \, d\tau \right\} = \frac{1}{s^2} Y(s)
+\]
+
+Nous substituons ces résultats dans l'équation transformée :
+
+\[
+Y(s) = \frac{1}{s^2} - \frac{1}{s^2} Y(s)
+\]
+
+Réorganisons pour isoler \( Y(s) \) :
+
+\[
+Y(s) + \frac{1}{s^2} Y(s) = \frac{1}{s^2}
+\]
+
+Factorisons \( Y(s) \) :
+
+\[
+Y(s) \left(1 + \frac{1}{s^2}\right) = \frac{1}{s^2}
+\]
+
+Simplifions :
+
+\[
+Y(s) \left(\frac{s^2 + 1}{s^2}\right) = \frac{1}{s^2}
+\]
+
+Donc,
+
+\[
+Y(s) = \frac{1}{s^2 + 1}
+\]
+
+La transformation inverse de Laplace de \( \frac{1}{s^2 + 1} \) est :
+
+\[
+\mathcal{L}^{-1}\left\{\frac{1}{s^2 + 1}\right\} = \sin(t)
+\]
+
+Ainsi, la solution de l'équation de Volterra est :
+
+\[
+y(t) = \sin(t)
+\]
+
+\chapter{Conclusion}
+
+ En conclusion,  la transformation de Laplace représente non seulement une prouesse  majeure dans l'histoire des mathématiques appliquées, mais aussi un outil indispensable dans de nombreux domaines scientifiques et techniques.\\
+  Du travail de Joseph Fourier  jusqu' à son développement ultérieur par des mathématiciens comme Pierre-Simon Laplace et Oliver Heaviside, elle est un outil trés simple d emploi pour résoudre les problémes
+ d évolution (équations différentielles linéaire ou aux dérivées partielles, ou intégrales ...).
+ Par transformée de Laplace, les équations di¤érentielles linéaire deviennent des équations
+ algébriques. Il en résulte une simplification efficace des problémes et permet ainsi leur
+ résolution analytique.\\
+En somme, la transformation de Laplace revèle  la capacité des mathématiques à offrir des solutions concrètes et efficaces aux défis scientifiques et technologiques contemporains. Elle demeure un outil clé de l'analyse des systèmes dynamiques, de l'ingéniérie et de beaucoups d'autres domaines d'applications des sciences exactes, assurant son importance continue dans les avancées technologiques  futures .
+
+\end{document}

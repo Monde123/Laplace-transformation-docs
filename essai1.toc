@@ -1,0 +1,36 @@
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{2}{}%
+\contentsline {chapter}{\numberline {2} La transformation de laplace}{3}{}%
+\contentsline {section}{\numberline {2.1}Quelques concepts de base}{3}{}%
+\contentsline {section}{\numberline {2.2} Transformation de Fourier}{5}{}%
+\contentsline {subsubsection}{ Les Propriétés de la transformée de Fourier}{5}{}%
+\contentsline {subsubsection}{ La transformée inverse de la Transformation de Fourier}{6}{}%
+\contentsline {subsubsection}{ Quelques transformées usuelles de Fourier}{7}{}%
+\contentsline {section}{\numberline {2.3} Transformée de Laplace. }{8}{}%
+\contentsline {subsection}{\numberline {2.3.1} Caractérisation et Holomorphie}{9}{}%
+\contentsline {subsubsection}{ lien entre la transformation de Fourier et la transformation de Laplace.}{9}{}%
+\contentsline {subsection}{\numberline {2.3.2}Propriétés de la transformée de Laplace}{10}{}%
+\contentsline {subsubsection}{ La linéarité:}{10}{}%
+\contentsline {subsubsection}{ La continuité:}{11}{}%
+\contentsline {subsubsection}{ Conjugaison complexe:}{11}{}%
+\contentsline {subsubsection}{ la dérivation et l'Intégration.}{11}{}%
+\contentsline {subsubsection}{Changement d'echelle (dilatation):}{12}{}%
+\contentsline {subsubsection}{ Convolution:}{12}{}%
+\contentsline {subsection}{\numberline {2.3.3} Comportements asymptotiques}{13}{}%
+\contentsline {subsubsection}{ Comportement à l'infini.}{13}{}%
+\contentsline {subsubsection}{ Théorème de la valeur initiale}{13}{}%
+\contentsline {subsubsection}{Théorème de la valeur finale }{14}{}%
+\contentsline {section}{\numberline {2.4} L'inverse de la transformée de Laplace.}{15}{}%
+\contentsline {subsubsection}{ Formule de Bromwich-Wagner:}{15}{}%
+\contentsline {subsubsection}{Formule de Heaviside:}{16}{}%
+\contentsline {section}{\numberline {2.5} Transformations usuelles de la transformation de Laplace}{18}{}%
+\contentsline {section}{\numberline {2.6}La transformé de Laplace au sens des distributions}{18}{}%
+\contentsline {subsubsection}{Définition de la Transformée de Laplace pour les Distributions}{18}{}%
+\contentsline {subsubsection}{ Propriétés de la Transformée de Laplace des Distributions}{19}{}%
+\contentsline {subsubsection}{ Exemple : La Transformée de Laplace de la Distribution de Dirac}{19}{}%
+\contentsline {chapter}{\numberline {3}Applications de la transformation de Laplace}{20}{}%
+\contentsline {section}{\numberline {3.1} \'Equation différentielles à coefficients constantes}{20}{}%
+\contentsline {section}{\numberline {3.2} \'equation différentielles à coefficients variables }{22}{}%
+\contentsline {section}{\numberline {3.3} \'Equations aux dérivées partielles linéaires}{23}{}%
+\contentsline {section}{\numberline {3.4} \'Equations intégrales }{24}{}%
+\contentsline {chapter}{\numberline {4}Conclusion}{26}{}%
